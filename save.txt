@@ -1,6 +1,6 @@
-Overlander
-1
-he
-him
-Dave
-1
+first_pronoun=he
+name=Dave
+second_pronoun=him
+species=Overlander
+state=tutorial
+valid_species=

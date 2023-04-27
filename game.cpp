@@ -5,24 +5,18 @@
 #include <algorithm> 
 #include <string>  
 #include <cstring>
+#include <map>//map variables
+#include <cstdlib>
 //using namespace std;
 
-void saveToFile(const std::string& fileName,
-                const std::string& species,
-                const bool valid_species,
-                const std::string& first_pronoun,
-                const std::string& second_pronoun,
-                const std::string& name,
-                const int state)
+//save data into savefile
+void saveToFile(const std::string& fileName, const std::map<std::string, std::string>& data)
 {
     std::ofstream outFile(fileName);
     if (outFile.is_open()) {
-        outFile << species << std::endl;
-        outFile << valid_species << std::endl;
-        outFile << first_pronoun << std::endl;
-        outFile << second_pronoun << std::endl;
-        outFile << name << std::endl;
-        outFile << state << std::endl;
+        for (const auto& [key, val] : data) {
+            outFile << key << "=" << val << std::endl;
+        }
         outFile.close();
     }
     else {
@@ -30,23 +24,13 @@ void saveToFile(const std::string& fileName,
     }
 }
 
-
-void loadFromFile(const std::string& fileName,
-                  std::string& species,
-                  bool& valid_species,
-                  std::string& first_pronoun,
-                  std::string& second_pronoun,
-                  std::string& name,
-                  int& state)
-{
+//load variables in data from save file
+void loadFromFile(const std::string& fileName, std::map<std::string, std::string>& data) {
     std::ifstream inFile(fileName);
     if (inFile.is_open()) {
-        inFile >> species;
-        inFile >> valid_species;
-        inFile >> first_pronoun;
-        inFile >> second_pronoun;
-        inFile >> name;
-        inFile >> state;
+        for (auto& [key, value] : data) {
+            inFile >> value;
+        }
         inFile.close();
     }
     else {
@@ -54,6 +38,7 @@ void loadFromFile(const std::string& fileName,
     }
 }
 
+//function to convert word to uppercase
 char* to_uppercase(const char* str) {
     size_t len = strlen(str);
     char* upper_str = new char[len + 1];
@@ -69,63 +54,75 @@ char* to_uppercase(const char* str) {
 }
 
 int main() {
+	#ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
+
+
 	//variables//
-	std::string species; //define species as null
-	bool valid_species = false;
-	std::string first_pronoun;
-	std::string second_pronoun;
-	std::string name;
-	int state = 0;
+	std::map<std::string, std::string> data = {
+        {"species", ""},
+        {"valid_species", "false"},
+        {"first_pronoun", ""},
+        {"second_pronoun", ""},
+        {"name", ""},
+        {"state", "setup"}
+    };
 	//variables//
+
+
 	
 	// check if save file exists, and load variables from it
 	const std::string saveFileName = "save.txt";
 	std::ifstream saveFile(saveFileName);
 	if (saveFile.good()) {
-        	loadFromFile(saveFileName, species, valid_species, first_pronoun, second_pronoun, name, state);//load variables from file
+        	loadFromFile(saveFileName, data);//load variables from file
 	}
 
 	
-	std::cout << "---Welcome to your TUC adventure!---" << "\n";
+	std::cout << "---Welcome to your TUC adventure!---" << "\n"; //welcome speach said on all loads
 	
 	//character setup state
-	if (state == 0) {	
+	if (data["state"] == "setup") {
+		std::cout << "I see you have no character, lets make one!" << "\n";
 		//User inputs species, loops if invalid
-		while (valid_species == false) {
+		while (data["valid_species"] == "false") {
 			std::cout << "Input character species (Overlander/Underlander/Gnawer): " << "\n";
-			std::cin >> species;
+			std::cin >> data["species"];
 			//std::cout << species << "\n";
-			if (species == "Underlander" || species == "Overlander" || species == "Gnawer") {
+			if (data["species"] == "Underlander" || data["species"] == "Overlander" || data["species"] == "Gnawer") {
 				std::cout << "Valid species" << "\n";
-				valid_species = true;
+				data["valid_species"] = true;
 			}	
 			else {
 				std::cout << "Invalid species, reinput" << "\n";
-				valid_species = false;
+				data["valid_species"] = false;
 			}
 		}
 		
 		//get name and pronouns and save to variables
 		std::cout << "Enter your first pronoun, for example they, he or she: " << "\n";
-		std::cin >> first_pronoun;
+		std::cin >> data["first_pronoun"];
 		std::cout << "Enter your second pronoun,, for example them, him or her: " << "\n";
-		std::cin >> second_pronoun;
+		std::cin >> data["second_pronoun"];
 		std::cout << "And finally, enter your characters name: " << "\n";
-		std::cin >> name;
-		state = 1;
-		saveToFile(saveFileName, species, valid_species, first_pronoun, second_pronoun, name, state); //save data
+		std::cin >> data["name"];
+		data["state"] = "tutorial";
+		saveToFile(saveFileName, data); //save data
 	}
 
 
 	//Skip tutorial?
-	if (state == 1) {
+	if (data["state"] == "tutorial") {
 		//Find out if user wants to just skip into main game
 		std::string play_tutorial;
 		std::cout << "Play the tutorial?(y/n) " << "\n";
 		std::cin >> play_tutorial;
 		if (play_tutorial == "n") {
 			std::cout << "Ok, that's fine.  You will be placed in your starting location" << "\n";
-			state = 2;
+			data["state"] = "2";
 			
 		}
 		else if (play_tutorial == "y") {
@@ -134,20 +131,23 @@ int main() {
 		}
 	}
 	//Tutorial state
-	if (state == 1) {
+	if (data["state"] == "tutorial") {
 		
 	
 		//tutorial start
-		if (species == "Underlander") {
-			std::cout << "'Wake up " << name << ", The Gnawers are attacking, we must escape on the Fliers'" << "\n";
+		if (data["species"] == "Underlander") {
+			std::cout << "'Wake up " << data["name"] << ", The Gnawers are attacking, we must escape on the Fliers'" << "\n";
 		}
-		if (species == "Overlander") {
+		if (data["species"] == "Overlander") {
 			std::cout << "'Who are you, who are' you hear a high pitched voice say suddenly. What had happened you ask yourself, the last thin you remember was falling... forever, then everything went black" << "\n";
 		}
-		if (species == "Gnawer") {
-			std::cout << "'Quick, get up " << name << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
+		if (data["species"] == "Gnawer") {
+			std::cout << "'Quick, get up " << data["name"] << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
 		}
-		state = 2;//change state to main state
+		data["state"] = "main";//change state to main state
+	}
+	else if (data["state"] != "setup" && data["state"] != "tutorial" && data["state"] != "main") { //lets up know if state has a corrupted value
+			std::cout << "state is messed up bruh" << "\n";
 	}
 	return 0;
 }
