@@ -15,7 +15,7 @@ void saveToFile(const std::string& fileName, const std::map<std::string, std::st
     std::ofstream outFile(fileName);
     if (outFile.is_open()) {
         for (const auto& [key, val] : data) {
-            outFile << key << "=" << val << std::endl;
+            outFile << val << std::endl;
         }
         outFile.close();
     }
@@ -63,17 +63,15 @@ int main() {
 
 	//variables//
 	std::map<std::string, std::string> data = {
-        {"species", ""},
+        {"species", " "},
         {"valid_species", "false"},
-        {"first_pronoun", ""},
-        {"second_pronoun", ""},
-        {"name", ""},
+        {"first_pronoun", " "},
+        {"second_pronoun", " "},
+        {"name", " "},
         {"state", "setup"}
     };
 	//variables//
 
-
-	
 	// check if save file exists, and load variables from it
 	const std::string saveFileName = "save.txt";
 	std::ifstream saveFile(saveFileName);
@@ -81,7 +79,16 @@ int main() {
         	loadFromFile(saveFileName, data);//load variables from file
 	}
 
+	//debugging//
+	std::cout << data["species"] << "\n";
+	std::cout << data["valid_species"] << "\n";
+	std::cout << data["first_pronoun"] << "/";
+	std::cout << data["second_pronoun"] << "\n";
+	std::cout << data["name"] << "\n";
+	std::cout << data["state"] << "\n";
 	
+
+
 	std::cout << "---Welcome to your TUC adventure!---" << "\n"; //welcome speach said on all loads
 	
 	//character setup state
@@ -122,13 +129,14 @@ int main() {
 		std::cin >> play_tutorial;
 		if (play_tutorial == "n") {
 			std::cout << "Ok, that's fine.  You will be placed in your starting location" << "\n";
-			data["state"] = "2";
+			data["state"] = "main";
 			
 		}
 		else if (play_tutorial == "y") {
 			std::cout << "Welcome to the tutorial" << "\n";
 			
 		}
+		saveToFile(saveFileName, data); //save data
 	}
 	//Tutorial state
 	if (data["state"] == "tutorial") {
@@ -145,7 +153,15 @@ int main() {
 			std::cout << "'Quick, get up " << data["name"] << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
 		}
 		data["state"] = "main";//change state to main state
+		saveToFile(saveFileName, data); //save data
 	}
+
+	//main game
+	if (data["state"] == "main") {
+		std::cout << "Main game not yet made :(" << "\n";
+	}
+
+	//else
 	else if (data["state"] != "setup" && data["state"] != "tutorial" && data["state"] != "main") { //lets up know if state has a corrupted value
 			std::cout << "state is messed up bruh" << "\n";
 	}
