@@ -2,6 +2,9 @@
 #include <iostream>
 #include <fstream> // for file input/output
 #include <string> // for string operations
+#include <algorithm> 
+#include <string>  
+#include <cstring>
 //using namespace std;
 
 void saveToFile(const std::string& fileName,
@@ -51,6 +54,19 @@ void loadFromFile(const std::string& fileName,
     }
 }
 
+char* to_uppercase(const char* str) {
+    size_t len = strlen(str);
+    char* upper_str = new char[len + 1];
+    for (size_t i = 0; i < len; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            upper_str[i] = toupper(str[i]);
+        } else {
+            upper_str[i] = str[i];
+        }
+    }
+    upper_str[len] = '\0';
+    return upper_str;
+}
 
 int main() {
 	//variables//
@@ -66,12 +82,13 @@ int main() {
 	const std::string saveFileName = "save.txt";
 	std::ifstream saveFile(saveFileName);
 	if (saveFile.good()) {
-        	loadFromFile(saveFileName, species, valid_species, first_pronoun, second_pronoun, name, state);
+        	loadFromFile(saveFileName, species, valid_species, first_pronoun, second_pronoun, name, state);//load variables from file
 	}
 
-	//setup character
+	
 	std::cout << "---Welcome to your TUC adventure!---" << "\n";
-
+	
+	//character setup state
 	if (state == 0) {	
 		//User inputs species, loops if invalid
 		while (valid_species == false) {
@@ -96,9 +113,31 @@ int main() {
 		std::cout << "And finally, enter your characters name: " << "\n";
 		std::cin >> name;
 		state = 1;
-		saveToFile(saveFileName, species, valid_species, first_pronoun, second_pronoun, name, state);
+		saveToFile(saveFileName, species, valid_species, first_pronoun, second_pronoun, name, state); //save data
 	}
+
+
+	//Skip tutorial?
 	if (state == 1) {
+		//Find out if user wants to just skip into main game
+		std::string play_tutorial;
+		std::cout << "Play the tutorial?(y/n) " << "\n";
+		std::cin >> play_tutorial;
+		if (play_tutorial == "n") {
+			std::cout << "Ok, that's fine.  You will be placed in your starting location" << "\n";
+			state = 2;
+			
+		}
+		else if (play_tutorial == "y") {
+			std::cout << "Welcome to the tutorial" << "\n";
+			
+		}
+	}
+	//Tutorial state
+	if (state == 1) {
+		
+	
+		//tutorial start
 		if (species == "Underlander") {
 			std::cout << "'Wake up " << name << ", The Gnawers are attacking, we must escape on the Fliers'" << "\n";
 		}
@@ -108,6 +147,7 @@ int main() {
 		if (species == "Gnawer") {
 			std::cout << "'Quick, get up " << name << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
 		}
+		state = 2;//change state to main state
 	}
 	return 0;
 }
