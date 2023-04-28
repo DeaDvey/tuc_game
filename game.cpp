@@ -7,7 +7,11 @@
 #include <cstring>
 #include <map>//map variables
 #include <cstdlib>
+#include <stdlib.h>
+#include <unordered_map>
+#include <vector>
 //using namespace std;
+//test
 
 //save data into savefile
 void saveToFile(const std::string& fileName, const std::map<std::string, std::string>& data)
@@ -15,7 +19,7 @@ void saveToFile(const std::string& fileName, const std::map<std::string, std::st
     std::ofstream outFile(fileName);
     if (outFile.is_open()) {
         for (const auto& [key, val] : data) {
-            outFile << val << std::endl;
+            outFile << key << "=" << val << std::endl;
         }
         outFile.close();
     }
@@ -29,7 +33,7 @@ void loadFromFile(const std::string& fileName, std::map<std::string, std::string
     std::ifstream inFile(fileName);
     if (inFile.is_open()) {
         for (auto& [key, value] : data) {
-            inFile >> value;
+            inFile >> key >> value;
         }
         inFile.close();
     }
@@ -62,14 +66,20 @@ int main() {
 
 
 	//variables//
-	std::map<std::string, std::string> data = {
+	std::vector<std::pair<std::string, std::string>> data {
         {"species", " "},
         {"valid_species", "false"},
         {"first_pronoun", " "},
         {"second_pronoun", " "},
         {"name", " "},
-        {"state", "setup"}
+        {"state", "setup"},
+        {"location", " "}
     };
+
+	std::map<std::string, int> key;
+    for (int i = 0; i < data.size(); ++i) {
+        key[data[i].first] = i;
+    }
 	//variables//
 
 	// check if save file exists, and load variables from it
@@ -80,56 +90,61 @@ int main() {
 	}
 
 	//debugging//
-	std::cout << data["species"] << "\n";
-	std::cout << data["valid_species"] << "\n";
-	std::cout << data["first_pronoun"] << "/";
-	std::cout << data["second_pronoun"] << "\n";
-	std::cout << data["name"] << "\n";
-	std::cout << data["state"] << "\n";
-	
+	std::cout << data[key["species"]] << "\n";
+	std::cout << data[key["valid_species"]] << "\n";
+	std::cout << data[key["first_pronoun"]] << "/";
+	std::cout << data[key["second_pronoun"]] << "\n";
+	std::cout << data[key["name"]] << "\n";
+	std::cout << data[key["state"]] << "\n";
+
+	//rat ascii art
+	std::cout << "               _..----.._    _" << "\n";
+	std::cout << "            .`  .--.    ''-.(0)_" << "\n";
+	std::cout << "'-.__.-''''=:|   ,  _)_ \\__ . c\'-.." << "\n";
+	std::cout << "             '''------'---''---'-''" << "\n\n"; //I found this rat art on https://ascii.co.uk/art/rat
 
 
 	std::cout << "---Welcome to your TUC adventure!---" << "\n"; //welcome speach said on all loads
 	
 	//character setup state
-	if (data["state"] == "setup") {
+	if (data[key["state"]] == "setup") {
 		std::cout << "I see you have no character, lets make one!" << "\n";
 		//User inputs species, loops if invalid
-		while (data["valid_species"] == "false") {
+		while (data[key["valid_species"]] == "false") {
 			std::cout << "Input character species (Overlander/Underlander/Gnawer): " << "\n";
-			std::cin >> data["species"];
+			std::cin >> data[key["species"]];
 			//std::cout << species << "\n";
-			if (data["species"] == "Underlander" || data["species"] == "Overlander" || data["species"] == "Gnawer") {
+			if (data[key["species"]] == "Underlander" || data[key["species"]] == "Overlander" || data[key["species"]] == "Gnawer") {
 				std::cout << "Valid species" << "\n";
-				data["valid_species"] = true;
+				data[key["valid_species"]] = true;
 			}	
 			else {
 				std::cout << "Invalid species, reinput" << "\n";
-				data["valid_species"] = false;
+				data[key["valid_species"]] = false;
 			}
 		}
 		
 		//get name and pronouns and save to variables
 		std::cout << "Enter your first pronoun, for example they, he or she: " << "\n";
-		std::cin >> data["first_pronoun"];
+		std::cin >> data[key["first_pronoun"]];
 		std::cout << "Enter your second pronoun,, for example them, him or her: " << "\n";
-		std::cin >> data["second_pronoun"];
+		std::cin >> data[key["second_pronoun"]];
 		std::cout << "And finally, enter your characters name: " << "\n";
-		std::cin >> data["name"];
+		std::cin >> data[key["name"]];
 		data["state"] = "tutorial";
 		saveToFile(saveFileName, data); //save data
 	}
 
 
 	//Skip tutorial?
-	if (data["state"] == "tutorial") {
+	if (data[key["state"]] == "tutorial") {
 		//Find out if user wants to just skip into main game
 		std::string play_tutorial;
 		std::cout << "Play the tutorial?(y/n) " << "\n";
 		std::cin >> play_tutorial;
 		if (play_tutorial == "n") {
 			std::cout << "Ok, that's fine.  You will be placed in your starting location" << "\n";
-			data["state"] = "main";
+			data[key["state"]] = "main";
 			
 		}
 		else if (play_tutorial == "y") {
@@ -139,31 +154,45 @@ int main() {
 		saveToFile(saveFileName, data); //save data
 	}
 	//Tutorial state
-	if (data["state"] == "tutorial") {
+	if (data[key["state"]] == "tutorial") {
 		
 	
 		//tutorial start
-		if (data["species"] == "Underlander") {
-			std::cout << "'Wake up " << data["name"] << ", The Gnawers are attacking, we must escape on the Fliers'" << "\n";
+		//Underlander tutorial
+		if (data[key["species"]] == "Underlander") {
+			data[key["location"]] = "Human Outpost 1";
+			std::cout << "'Wake up " << data[key["name"]] << ", The Gnawers are attacking, we must escape on the Fliers'" << "\n";
+			system("Color ED");
+			std::cout << "colour test";
 		}
-		if (data["species"] == "Overlander") {
+
+		//Overlander tutorial
+		if (data[key["species"]] == "Overlander") {
+			data[key["location"]] = "Overland Gateway";
 			std::cout << "'Who are you, who are' you hear a high pitched voice say suddenly. What had happened you ask yourself, the last thin you remember was falling... forever, then everything went black" << "\n";
 		}
-		if (data["species"] == "Gnawer") {
-			std::cout << "'Quick, get up " << data["name"] << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
+
+
+		//Gnawer tutorial
+		if (data[key["species"]] == "Gnawer") {
+			data[key["location"]] = "Human Outpost";
+			std::cout << "'Quick, get up " << data[key["name"]] << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
 		}
-		data["state"] = "main";//change state to main state
+		data[key["state"]] = "main";//change state to main state
 		saveToFile(saveFileName, data); //save data
 	}
 
 	//main game
-	if (data["state"] == "main") {
+	if (data[key["state"]] == "main") {
 		std::cout << "Main game not yet made :(" << "\n";
 	}
 
 	//else
-	else if (data["state"] != "setup" && data["state"] != "tutorial" && data["state"] != "main") { //lets up know if state has a corrupted value
+	else if (data[key["state"]] != "setup" && data[key["state"]] != "tutorial" && data[key["state"]] != "main") { //lets up know if state has a corrupted value
 			std::cout << "state is messed up bruh" << "\n";
 	}
+
+
+	std::cout << " " << "\n";
 	return 0;
 }
