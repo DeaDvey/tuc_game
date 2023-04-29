@@ -56,7 +56,32 @@ void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string
     }
 }
 
+//                        ===read user input and determine the output===
+std::string readInput(const std::string& input, std::vector<std::pair<std::string, std::string>>& data) {
 
+    std::map<std::string, int> key; //map that stores the above vector
+    for (int i = 0; i < data.size(); ++i) {
+        key[data[i].first] = i;
+    }
+
+    std::string output;//set what should be outputted
+
+    //change phyisical position (sitting/standing/laying)
+    //standing
+    if (input == "stand" || input == "standing") {
+        data[key["physical_position"]].second = "standing";
+    }
+    //sitting
+    if (input == "sit" || input == "sitting") {
+        data[key["physical_position"]].second = "sitting";
+    }
+    //laying
+    if (input == "lay" || input == "lie" || input == "laying" || input == "lying") {
+        data[key["physical_position"]].second = "lying";
+    }
+
+    return output;
+}
 
 int main() {
     //clear screen on program start
@@ -76,7 +101,8 @@ int main() {
         {"second_pronoun", " "},
         {"name", " "},
         {"state", "setup"},
-        {"location", " "}
+        {"location", " "},
+        {"physical_position", "standing"}
     };
 
 	std::map<std::string, int> key; //map that stores the above vector
@@ -204,6 +230,7 @@ int main() {
 			data[key["location"]].second = "Human Outpost 1";
             //output text
 			std::cout << dialouge_color << "'Wake up " << data[key["name"]].second << ", The Gnawers are attacking, we must escape on the Fliers'" << general_color << "\n";
+            data[key["physical_position"]].second = "lying";
 		}
 
 		//Overlander tutorial
@@ -214,7 +241,7 @@ int main() {
 			std::cout << dialouge_color << "'Who are you, who are'";
             std::cout << general_color << "you hear a high pitched voice say suddenly. What had happened you ask yourself, the last thin you remember was falling... forever, then everything went black" << "\n";
             std::cout << command_info_color << "Type 'stand' to stand up" << general_color << "\n";
-
+            data[key["physical_position"]].second = "sitting";
 		}
 
 
@@ -223,6 +250,7 @@ int main() {
 			data[key["location"]].second = "Human Outpost";
             //output text
 			std::cout << dialouge_color << "'Quick, get up " << data[key["name"]].second << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << general_color << "\n";
+            data[key["physical_position"]].second = "lying";
 		}
 
 
