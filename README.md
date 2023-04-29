@@ -6,3 +6,6 @@ This is more of an experiment to get better at C++ and make a fun game.
 •Make skills.
 •Design story.
 •Beautify.
+
+# Dependencies
+•gcc - C++ compiler
