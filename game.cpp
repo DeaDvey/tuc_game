@@ -1,3 +1,11 @@
+//Color code key:
+//Red =              Fatal error
+//Yellow =           Error
+//Blue =             Tell user about command
+//Green+italics =    Dialouge
+//White =            Rest/narator
+
+
 #include <iostream>
 #include <iostream>
 #include <fstream> // for file input/output
@@ -48,6 +56,8 @@ void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string
     }
 }
 
+
+
 int main() {
     //clear screen on program start
 	#ifdef _WIN32
@@ -73,6 +83,13 @@ int main() {
     for (int i = 0; i < data.size(); ++i) {
         key[data[i].first] = i;
     }
+
+    //color codes
+    std::string fatal_error_color = "\033[31m";
+    std::string error_color = "\033[33m";
+    std::string dialouge_color = "\033[3;32m";
+    std::string command_info_color = "\033[34m";
+    std::string general_color = "\033[0m";
 	//              ===VARIABLES===
 
 
@@ -101,7 +118,7 @@ int main() {
 	std::cout << "             '''------'---''---'-''" << "\n\n"; //I found this rat art on https://ascii.co.uk/art/rat
 
 
-	std::cout << "---Welcome to your TUC adventure!---" << "\n"; //welcome speach said on all loads
+	std::cout << "---Welcome to your TUC adventure!---" << "\n\n"; //welcome speach said on all loads
 	
 	//                          ===character setup state===
 	if (data[key["state"]].second == "setup") {
@@ -140,15 +157,15 @@ int main() {
 		std::cout << "And finally, enter your characters name: " << "\n";
 		std::cin >> data[key["name"]].second;
 
-        //set state to tutorial
-		data[key["state"]].second = "tutorial";
+        //set state to tutorial skip option
+		data[key["state"]].second = "skip_tutorial";
 
 		saveToFile(saveFileName, data); //save data
 	}
 
 
-	//                ===Skip tutorial?===
-	if (data[key["state"]].second == "tutorial") {
+	//                         ===Skip tutorial?===
+	if (data[key["state"]].second == "skip_tutorial") {
 		//Find out if user wants to just skip into main game
 		std::string play_tutorial;
 		std::cout << "Play the tutorial?(y/n) " << "\n";
@@ -161,9 +178,10 @@ int main() {
 
 		}
 
-		//if use wants to contnue with tutorial, dont change state
+		//if use wants to contnue with tutorial, change state to tutorial
 		else if (play_tutorial == "y") {
 			std::cout << "Welcome to the tutorial" << "\n";
+            data[key["state"]].second = "tutorial";
 
 		}
 
@@ -174,36 +192,50 @@ int main() {
 
 	//                          ===Tutorial state===
 	if (data[key["state"]].second == "tutorial") {
-
+        std::string tutorial_finished = "false";
 
 		//tutorial start
+
+
+
+
 		//Underlander tutorial
 		if (data[key["species"]].second == "Underlander") {
 			data[key["location"]].second = "Human Outpost 1";
-			std::cout << "'Wake up " << data[key["name"]].second << ", The Gnawers are attacking, we must escape on the Fliers'" << "\n";
-			system("Color ED");
-			std::cout << "colour test";
+            //output text
+			std::cout << dialouge_color << "'Wake up " << data[key["name"]].second << ", The Gnawers are attacking, we must escape on the Fliers'" << general_color << "\n";
 		}
 
 		//Overlander tutorial
 		if (data[key["species"]].second == "Overlander") {
 			data[key["location"]].second = "Overland Gateway";
-			std::cout << "'Who are you, who are' you hear a high pitched voice say suddenly. What had happened you ask yourself, the last thin you remember was falling... forever, then everything went black" << "\n";
+
+            //output text
+			std::cout << dialouge_color << "'Who are you, who are'";
+            std::cout << general_color << "you hear a high pitched voice say suddenly. What had happened you ask yourself, the last thin you remember was falling... forever, then everything went black" << "\n";
+            std::cout << command_info_color << "Type 'stand' to stand up" << general_color << "\n";
+
 		}
 
 
 		//Gnawer tutorial
 		if (data[key["species"]].second == "Gnawer") {
 			data[key["location"]].second = "Human Outpost";
-			std::cout << "'Quick, get up " << data[key["name"]].second << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << "\n";
+            //output text
+			std::cout << dialouge_color << "'Quick, get up " << data[key["name"]].second << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << general_color << "\n";
 		}
-		data[key["state"]].second = "main";//change state to main state
+
+
+
+
+
+		//check if tutorial is finished
+		if (tutorial_finished == "true") {
+            std::cout << "finished tutorial!" << "\n";
+            data[key["state"]].second = "main";//change state to main state
+        }
 		saveToFile(saveFileName, data); //save data
 	}
-
-
-
-
 
 
 	//                                   ===main game===
@@ -211,9 +243,13 @@ int main() {
 		std::cout << "Main game not yet made :(" << "\n";
 	}
 
+
+
 	//else check, if state is invalid
 	else if (data[key["state"]].second != "setup" && data[key["state"]].second != "tutorial" && data[key["state"]].second != "main") { //lets up know if state has a corrupted value
+            std::cout << "\033[31m";
 			std::cout << "state is messed up bruh" << "\n";
+            std::cout << "\033[0m";
 			return 1;
 	}
 
