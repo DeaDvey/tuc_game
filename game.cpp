@@ -325,7 +325,7 @@ int main() {
             std::cin >> input;
 
             //if input is exit, save and end the program
-            if (input == "exit") {
+            if (lower(input) == "exit") {
                 saveToFile(saveFileName, data); //save data
                 std::cout << "\nExiting\n";
                 return 0;
