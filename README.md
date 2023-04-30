@@ -8,6 +8,7 @@ it's a small program right now so I should be able to respond
 •Make skills.
 •Design story.
 •Beautify.
+•Spread code across multiple files
 
 # Dependencies
 •gcc - C++ compiler
