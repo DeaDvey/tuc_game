@@ -17,6 +17,12 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
     //variables
     std::string input;
     std::string continue_loop = "true";
+    std::string tutorial_finished = "false";
+    std::map<std::string, int> key; //map that stores the above vector
+    for (int i = 0; i < data.size(); ++i) {
+        key[data[i].first] = i;
+    }
+    std::cout << "\n";
 
     //std::cout << "-See commands.html for commands-" << "\n\n"; //commented out as it is diaplayed when typing "help"
     while (continue_loop == "true") {//infinite loop until exit is typed
@@ -24,13 +30,14 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
         std::cin >> input;
         //if input is exit, save and end the program
         if (lower(input) == "exit") {
+            continue_loop = "false";
             saveToFile(saveFileName, data); //save data
             std::cout << "\nExiting\n";
-            return 0;
+            return "done";
         }
         //else, read the input
         else {
-            readInput(input, data);
+            readInput(input, data, saveFileName);
         }
     }
     return "done";

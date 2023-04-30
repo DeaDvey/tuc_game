@@ -34,7 +34,10 @@ std::string tutorial(std::vector<std::pair<std::string, std::string>>& data, con
 
     //Underlander tutorial
     if (data[key["species"]].second == "Underlander") {
-        data[key["location"]].second = "Human Outpost 1";
+        //set location
+        data[key["location_x"]].second = "27";
+        data[key["location_y"]].second = "33";
+
         //output text
         std::cout << dialouge_color << "'Wake up " << data[key["name"]].second << ", The Gnawers are attacking, we must escape on the Fliers'" << general_color << "\n";
         data[key["physical_position"]].second = "lying";
@@ -42,7 +45,9 @@ std::string tutorial(std::vector<std::pair<std::string, std::string>>& data, con
 
     //Overlander tutorial
     if (data[key["species"]].second == "Overlander") {
-        data[key["location"]].second = "Overland Gateway";
+        //set location
+        data[key["location_x"]].second = "41";
+        data[key["location_y"]].second = "28";
 
         //output text
         std::cout << dialouge_color << "'Who are you, who are'";
@@ -54,7 +59,9 @@ std::string tutorial(std::vector<std::pair<std::string, std::string>>& data, con
 
     //Gnawer tutorial
     if (data[key["species"]].second == "Gnawer") {
-        data[key["location"]].second = "Human Outpost";
+        //set location
+        data[key["location_x"]].second = "26";
+        data[key["location_y"]].second = "34";
         //output text
         std::cout << dialouge_color << "'Quick, get up " << data[key["name"]].second << " The Bane is saying we attack the human outpost in 15 minutes, get up!'" << general_color << "\n";
         data[key["physical_position"]].second = "lying";

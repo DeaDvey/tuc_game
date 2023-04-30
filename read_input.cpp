@@ -15,8 +15,8 @@
 
 
 //                        ===read user input and determine the output===
-std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data) {
-
+std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
+    //variables
     std::cout << "\n"; //seperate up input and output
 
     std::map<std::string, int> key; //map that stores the above vector
@@ -51,14 +51,21 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << data[key["second_pronoun"]].second << "\n";
         std::cout << "Name: " << data[key["name"]].second << "\n";
         std::cout << "State: " << data[key["state"]].second << "\n";
-        std::cout << "Location: " << data[key["location"]].second << "\n";
+        std::cout << "Location: " << data[key["location_x"]].second << ", " << data[key["location_y"]].second << "\n";
     }
 
     //help the user
     else if (input == "help") {
         std::cout << "See resources/tucgame.html for commands" << "\n";
-        std::cout << "It looks best in a web browser" << "\n";
+        std::cout << "It looks best in a web browser display" << "\n";
     }
+
+    //traveling
+    else if (input == "n" || input == "north") {
+        travel("n", data, saveFileName);
+    }
+
+
 
     //else tell user they must of typoed
     else {

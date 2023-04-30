@@ -9,8 +9,12 @@ void saveToFile(const std::string& fileName, const std::vector<std::pair<std::st
 void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string, std::string>>& data);
 std::string upper(std::string& text);
 std::string lower(std::string& text);
-std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data);
+std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
 std::string tutorial(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
 std::string game(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
+std::string map(const std::string& direction, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
+std::string character_setup(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
+std::string travel(const std::string& direction, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
+
 
 #endif // MY_FUNCTIONS_H
