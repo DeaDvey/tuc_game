@@ -59,6 +59,8 @@ void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string
 //                        ===read user input and determine the output===
 std::string readInput(const std::string& input, std::vector<std::pair<std::string, std::string>>& data) {
 
+    std::cout << "\n"; //seperate up input and output
+
     std::map<std::string, int> key; //map that stores the above vector
     for (int i = 0; i < data.size(); ++i) {
         key[data[i].first] = i;
@@ -70,15 +72,30 @@ std::string readInput(const std::string& input, std::vector<std::pair<std::strin
     //standing
     if (input == "stand" || input == "standing") {
         data[key["physical_position"]].second = "standing";
+        std::cout << "You are now standing" << "\n";
     }
     //sitting
     if (input == "sit" || input == "sitting") {
         data[key["physical_position"]].second = "sitting";
+        std::cout << "You are now sitting" << "\n";
     }
     //laying
     if (input == "lay" || input == "lie" || input == "laying" || input == "lying") {
         data[key["physical_position"]].second = "lying";
+        std::cout << "You are now lying down" << "\n";
     }
+
+    //print info/specific info
+    if (input == "info" || input == "information") {
+        std::cout << "Species: " << data[key["species"]].second << "\n";
+        std::cout << "Pronouns: " << data[key["first_pronoun"]].second << "/";
+        std::cout << data[key["second_pronoun"]].second << "\n";
+        std::cout << "Name: " << data[key["name"]].second << "\n";
+        std::cout << "State: " << data[key["state"]].second << "\n";
+        std::cout << "Location: " << data[key["location"]].second << "\n";
+    }
+
+    std::cout << "\n"; //seperate up input and output
 
     return output;
 }
@@ -184,7 +201,7 @@ int main() {
 		std::cin >> data[key["name"]].second;
 
         //set state to tutorial skip option
-		data[key["state"]].second = "skip_tutorial";
+		data[key["state"]].second = "main";
 
 		saveToFile(saveFileName, data); //save data
 	}
@@ -268,7 +285,24 @@ int main() {
 
 	//                                   ===main game===
 	if (data[key["state"]].second == "main") {
-		std::cout << "Main game not yet made :(" << "\n";
+        std::string input;
+        std::string continue_loop = "true";
+		std::cout << "-To see a full list of commands, check out commands.html-" << "\n\n";
+        while (continue_loop == "true") {
+            std::cout << ">> ";
+            std::cin >> input;
+
+            //if input is exit, save and end the program
+            if (input == "exit") {
+                saveToFile(saveFileName, data); //save data
+                std::cout << "\nExiting\n";
+                return 0;
+            }
+            //else, read the input
+            else {
+                readInput(input, data);
+            }
+        }
 	}
 
 
