@@ -95,6 +95,16 @@ std::string readInput(const std::string& input, std::vector<std::pair<std::strin
         std::cout << "Location: " << data[key["location"]].second << "\n";
     }
 
+    //help the user
+    if (input == "help") {
+        std::cout << "See commands.html for commands" << "\n";
+    }
+
+    //else tell user they must of typoed
+    else {
+        std::cout << "Sorry, this command does not exist, please check your spelling and check it is a valid command" << "\n";
+    }
+
     std::cout << "\n"; //seperate up input and output
 
     return output;
@@ -287,8 +297,8 @@ int main() {
 	if (data[key["state"]].second == "main") {
         std::string input;
         std::string continue_loop = "true";
-		std::cout << "-To see a full list of commands, check out commands.html-" << "\n\n";
-        while (continue_loop == "true") {
+		std::cout << "-See commands.html for commands-" << "\n\n";
+        while (continue_loop == "true") {//infinite loop until exit is typed
             std::cout << ">> ";
             std::cin >> input;
 
