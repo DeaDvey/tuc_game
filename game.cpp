@@ -18,7 +18,7 @@
 #include <unordered_map>
 #include <vector>
 #include <sstream>
-
+#include <cctype>
 
 //                       ===save data into savefile===
 void saveToFile(const std::string& fileName, const std::vector<std::pair<std::string, std::string>>& data)
@@ -56,8 +56,28 @@ void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string
     }
 }
 
+//          convert strings to lower or uppercase
+//toupper function
+std::string upper(std::string& text) {
+    //std::string uppertext;
+    for (auto& c : text) {
+        c = toupper(c);
+    }
+
+    return text;
+}
+//tolower function
+std::string lower(std::string& text) {
+    //std::string uppertext;
+    for (auto& c : text) {
+        c = tolower(c);
+    }
+
+    return text;
+}
+
 //                        ===read user input and determine the output===
-std::string readInput(const std::string& input, std::vector<std::pair<std::string, std::string>>& data) {
+std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data) {
 
     std::cout << "\n"; //seperate up input and output
 
@@ -67,6 +87,7 @@ std::string readInput(const std::string& input, std::vector<std::pair<std::strin
     }
 
     std::string output;//set what should be outputted
+    input = lower(input);
 
     //change phyisical position (sitting/standing/laying)
     //standing
@@ -75,18 +96,18 @@ std::string readInput(const std::string& input, std::vector<std::pair<std::strin
         std::cout << "You are now standing" << "\n";
     }
     //sitting
-    if (input == "sit" || input == "sitting") {
+    else if (input == "sit" || input == "sitting") {
         data[key["physical_position"]].second = "sitting";
         std::cout << "You are now sitting" << "\n";
     }
     //laying
-    if (input == "lay" || input == "lie" || input == "laying" || input == "lying") {
+    else if (input == "lay" || input == "lie" || input == "laying" || input == "lying") {
         data[key["physical_position"]].second = "lying";
         std::cout << "You are now lying down" << "\n";
     }
 
     //print info/specific info
-    if (input == "info" || input == "information") {
+    else if (input == "info" || input == "information") {
         std::cout << "Species: " << data[key["species"]].second << "\n";
         std::cout << "Pronouns: " << data[key["first_pronoun"]].second << "/";
         std::cout << data[key["second_pronoun"]].second << "\n";
@@ -96,7 +117,7 @@ std::string readInput(const std::string& input, std::vector<std::pair<std::strin
     }
 
     //help the user
-    if (input == "help") {
+    else if (input == "help") {
         std::cout << "See resources/tucgame.html for commands" << "\n";
         std::cout << "It looks best in a web browser" << "\n";
     }
