@@ -97,7 +97,8 @@ std::string readInput(const std::string& input, std::vector<std::pair<std::strin
 
     //help the user
     if (input == "help") {
-        std::cout << "See commands.html for commands" << "\n";
+        std::cout << "See resources/tucgame.html for commands" << "\n";
+        std::cout << "It looks best in a web browser" << "\n";
     }
 
     //else tell user they must of typoed
