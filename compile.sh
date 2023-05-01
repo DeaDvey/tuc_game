@@ -8,3 +8,41 @@ g++ map.cpp funtions.cpp character_setup.cpp game.cpp main.cpp tutorial.cpp read
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
