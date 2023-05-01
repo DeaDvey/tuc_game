@@ -49,9 +49,40 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
     map[40][3] = "wall";
     map[41][4] = "wall";
     map[41][5] = "wall";
+    map[42][6] = "wall";
+    map[41][7] = "wall";
+    map[41][8] = "wall";
+    map[41][9] = "wall";
+    map[41][10] = "wall";
+    map[40][11] = "wall";
+    map[39][12] = "wall";
+    map[38][13] = "wall";
+    map[37][13] = "wall";
+    map[36][13] = "wall";
+    map[35][13] = "wall";
+    map[34][13] = "wall";
+    //[33][13] is a teleport block
+    map[32][13] = "wall";
+    map[31][13] = "wall";
+    map[30][12] = "wall";
+    map[29][12] = "wall";
+    map[28][11] = "wall";
+    map[27][10] = "wall";
+    map[26][10] = "wall";
+    map[25][9] = "wall";
+    map[25][8] = "wall";
+    map[25][7] = "wall";
+    map[25][6] = "wall";
+    map[25][5] = "wall";
+    map[26][4] = "wall";
+    map[27][3] = "wall";
+    map[28][2] = "wall";
+    map[29][2] = "wall";
+    map[20][2] = "wall";
 
     //teleports
     map[33][13] = "46 29";
+    map[46][28] = "33 12";
 
 
 
@@ -90,7 +121,9 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
         data[key["location_y"]].second = std::to_string(location_y);
         data[key["location_x"]].second = std::to_string(location_x);
         std::cout << "Moved north to " << location_x << ", " <<location_y << "\n";
-        std::cout << "\n" << map[location_x][location_y] << "\n";
+        if (map[location_y][location_x] != "") {
+            std::cout << "\n" << map[location_x][location_y] << "\n";
+        }
     }
 
     //south
@@ -121,7 +154,9 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
         data[key["location_y"]].second = std::to_string(location_y);
         data[key["location_x"]].second = std::to_string(location_x);
         std::cout << "Moved south to " << location_x << ", " <<location_y << "\n";
-        std::cout << "\n" << map[location_x][location_y] << "\n";
+        if (map[location_y][location_x] != "") {
+            std::cout << "\n" << map[location_x][location_y] << "\n";
+        }
 
         saveToFile(saveFileName, data); //save location to file
     }
@@ -154,7 +189,9 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
         data[key["location_y"]].second = std::to_string(location_y);
         data[key["location_x"]].second = std::to_string(location_x);
         std::cout << "Moved west to " << location_x << ", " <<location_y << "\n";
-        std::cout << "\n" << map[location_x][location_y] << "\n";
+        if (map[location_y][location_x] != "") {
+            std::cout << "\n" << map[location_x][location_y] << "\n";
+        }
 
         saveToFile(saveFileName, data); //save location to file
     }
@@ -187,7 +224,9 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
         data[key["location_y"]].second = std::to_string(location_y);
         data[key["location_x"]].second = std::to_string(location_x);
         std::cout << "Moved east to " << location_x << ", " <<location_y << "\n";
-        std::cout << "\n" << map[location_x][location_y] << "\n";
+        if (map[location_y][location_x] != "") {
+            std::cout << "\n" << map[location_x][location_y] << "\n";
+        }
 
         saveToFile(saveFileName, data); //save location to file
     }
