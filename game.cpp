@@ -23,6 +23,14 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
         key[data[i].first] = i;
     }
     std::cout << "\n";
+    //color codes
+    std::string fatal_error_color = "\033[31m";
+    std::string error_color = "\033[33m";
+    std::string dialouge_color = "\033[3;32m";
+    std::string command_info_color = "\033[34m";
+    std::string general_color = "\033[0m";
+
+
 
     //std::cout << "-See commands.html for commands-" << "\n\n"; //commented out as it is diaplayed when typing "help"
     while (continue_loop == "true") {//infinite loop until exit is typed

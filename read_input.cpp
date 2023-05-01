@@ -27,6 +27,16 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
     std::string output;//set what should be outputted
     input = lower(input);
 
+    //color codes
+    std::string fatal_error_color = "\033[31m";
+    std::string error_color = "\033[33m";
+    std::string dialouge_color = "\033[3;32m";
+    std::string command_info_color = "\033[34m";
+    std::string general_color = "\033[0m";
+
+
+
+
     //change phyisical position (sitting/standing/laying)
     //standing
     if (input == "stand" || input == "standing") {
@@ -46,12 +56,14 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
 
     //print info/specific info
     else if (input == "info" || input == "information") {
+        //print all the variables
         std::cout << "Species: " << data[key["species"]].second << "\n";
         std::cout << "Pronouns: " << data[key["first_pronoun"]].second << "/";
         std::cout << data[key["second_pronoun"]].second << "\n";
         std::cout << "Name: " << data[key["name"]].second << "\n";
         std::cout << "State: " << data[key["state"]].second << "\n";
         std::cout << "Location: " << data[key["location_x"]].second << ", " << data[key["location_y"]].second << "\n";
+        std::cout << "Physical position: " << data[key["physical_position"]].second << "\n";
     }
 
     //help the user
@@ -61,18 +73,32 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
     }
 
     //traveling
-    else if (input == "n" || input == "north") {
+    else if ((input == "n" || input == "north") && data[key["physical_position"]].second == "standing") {
         travel("n", data, saveFileName);
+    }
+    else if ((input == "s" || input == "south") && data[key["physical_position"]].second == "standing") {
+        travel("s", data, saveFileName);
+    }
+    else if ((input == "e" || input == "east") && data[key["physical_position"]].second == "standing") {
+        travel("e", data, saveFileName);
+    }
+    else if ((input == "w" || input == "west") && data[key["physical_position"]].second == "standing") {
+        travel("w", data, saveFileName);
+    }
+    else if ((input == "w" || input == "west" || input == "e" || input == "east" || input == "s" || input == "south" || input == "n" || input == "north") && data[key["physical_position"]].second != "standing") {
+        std::cout << "You must be standing in order to travel 🤦" << "\n";
+        std::cout << command_info_color << "stand" << general_color << " to stand" << "\n";
     }
 
 
 
     //else tell user they must of typoed
     else {
-        std::cout << "Sorry, this command does not exist, please check your spelling and check it is a valid command" << "\n";
+        std::cout << "Sorry, this command does not exist, or does not currently work, please check your spelling and check it is a valid command given your situation" << "\n";
     }
 
     std::cout << "\n"; //seperate up input and output
 
+    saveToFile(saveFileName, data); //save data
     return output;
 }
