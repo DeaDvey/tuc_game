@@ -60,6 +60,12 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << "Game saved" << "\n";
     }
 
+    //credits
+    else if (input == "credit" || input == "credits") {
+        std::cout << "• DeaDvey - contributer and project leader" << "\n";
+        std::cout << "• Presley - designed original map used to create pixel map" << "\n";
+    }
+
     //print info/specific info
     else if (input == "info" || input == "information") {
         //print all the variables
