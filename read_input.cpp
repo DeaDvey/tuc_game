@@ -54,6 +54,12 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << "You are now lying down" << "\n";
     }
 
+    //saving
+    else if (input == "save") {
+        saveToFile(saveFileName, data);
+        std::cout << "Game saved" << "\n";
+    }
+
     //print info/specific info
     else if (input == "info" || input == "information") {
         //print all the variables
