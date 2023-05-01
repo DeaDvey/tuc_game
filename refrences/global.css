@@ -1,0 +1,20 @@
+.whole {
+    color: #fffdd0;
+}
+body {
+    background-color: navy;
+    font-family: 'Trebuchet MS', Ariel;
+}
+
+a:link {
+  color: silver;
+}
+a:visited {
+  color: yellow;
+}
+a:hover {
+  color: lime;
+}
+a:active {
+  color: pink;
+}
