@@ -57,7 +57,12 @@ std::string map_defenitions(std::string map[100][84]) {
     map[27][3] = "wall";
     map[28][2] = "wall";
     map[29][2] = "wall";
-    map[20][2] = "wall";
+    map[30][2] = "wall";
+
+    //water in waterway
+    map[45][31] = "water";
+    map[46][31] = "water";
+    map[47][31] = "water";
 
     //teleports
     map[33][13] = "46 29";

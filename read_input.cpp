@@ -102,6 +102,10 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << command_info_color << "stand" << general_color << " to stand" << "\n";
     }
 
+    else if (input == "map") {
+        display_map(data, "saveFileName");
+    }
+
 
 
     //else tell user they must of typoed
