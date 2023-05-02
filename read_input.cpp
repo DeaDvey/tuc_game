@@ -86,16 +86,16 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
 
     //traveling
     else if ((input == "n" || input == "north") && data[key["physical_position"]].second == "standing") {
-        travel("n", data, saveFileName);
+        travel("north", data, saveFileName);
     }
     else if ((input == "s" || input == "south") && data[key["physical_position"]].second == "standing") {
-        travel("s", data, saveFileName);
+        travel("south", data, saveFileName);
     }
     else if ((input == "e" || input == "east") && data[key["physical_position"]].second == "standing") {
-        travel("e", data, saveFileName);
+        travel("east", data, saveFileName);
     }
     else if ((input == "w" || input == "west") && data[key["physical_position"]].second == "standing") {
-        travel("w", data, saveFileName);
+        travel("west", data, saveFileName);
     }
     else if ((input == "w" || input == "west" || input == "e" || input == "east" || input == "s" || input == "south" || input == "n" || input == "north") && data[key["physical_position"]].second != "standing") {
         std::cout << "You must be standing in order to travel 🤦" << "\n";
