@@ -19,6 +19,9 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
     std::string map[100][84];
     map_defenitions(map);// see map_defenitions.cpp for defining map blocks
 
+    std::string map_describe[100][84];
+    map_descriptions(map_describe);
+
     //variables
     std::map<std::string, int> key; //map that stores the above vector
     for (int i = 0; i < data.size(); ++i) {
@@ -42,14 +45,15 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
         location_x--;
     }
     //if it's a wall/water/lava/other
-    if (map[location_x][location_y] == "wall" || map[location_x][location_y] == "water" || map[location_x][location_y] == "lava") {
-        std::cout << "You hit: " << map[location_x][location_y] << "\n"; //tell user they hit something impassible
+    if (map[location_x][location_y] == "|||" || map[location_x][location_y] == "≈≈≈" || map[location_x][location_y] == "???") {
+        std::cout << "You hit: " << map_describe[location_x][location_y] << "\n"; //tell user they hit something impassible
         return "cannot go there";
     }
 
     //if it's a teleport block
-    else if (map[location_x][location_y] != "" && map[location_x][location_y].length() <= 7) {
-        std::istringstream iss(map[location_x][location_y]);
+    else if (map[location_x][location_y] == " ⌂ ") {
+        std::cout << "on teleport" << "\n";
+        std::istringstream iss(map_describe[location_x][location_y]);
         if (!(iss >> location_x >> location_y)) {
             std::cerr << "Error: could not extract integers from string" << std::endl;
             return "failed";
@@ -63,7 +67,7 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
     data[key["location_y"]].second = std::to_string(location_y);
     data[key["location_x"]].second = std::to_string(location_x);
     std::cout << "Moved " << direction << " to " << location_x << ", " <<location_y << "\n";
-    if (map[location_y][location_x] != "") {
+    if (map_describe[location_y][location_x] != "") {
         std::cout << "\n" << map[location_x][location_y] << "\n";
     }
 

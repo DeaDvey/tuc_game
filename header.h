@@ -17,5 +17,6 @@ std::string character_setup(std::vector<std::pair<std::string, std::string>>& da
 std::string travel(const std::string& direction, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
 std::string display_map(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
 std::string map_defenitions(std::string map[100][84]);
+std::string map_descriptions(std::string map[100][84]);
 
 #endif // MY_FUNCTIONS_H

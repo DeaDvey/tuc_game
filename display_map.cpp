@@ -18,6 +18,9 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
     std::string map[100][84];
     map_defenitions(map);// see map_defenitions.cpp for defining map blocks
 
+    std::string map_describe[100][84];
+    map_descriptions(map_describe);
+
     //variables
     std::map<std::string, int> key; //map that stores the above vector
     for (int i = 0; i < data.size(); ++i) {
@@ -35,7 +38,7 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
     std::string water_key =      "≈≈≈";
     std::string teleport_key =   "\\n/";
 
-    int fov = 12; // define field of view, or how far the player can see
+    int fov = 5; // define field of view, or how far the player can see
 
     //chat gpt wrote this lmao, it loops over each chunk in the surrounding zone based on fov and prints an ascii image based on what's there
     for (int j = -fov; j <= fov; j++) {
@@ -44,13 +47,10 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
                 std::cout << player_key;
             } else {
                 std::string cell = map[location_x + i][location_y + j];
-                if (cell == "wall") {
-                    std::cout << wall_key;
+                if (cell != "") {
+                    std::cout << cell;
                 }
-                else if (cell == "water") {
-                    std::cout << water_key;
-                }
-                else {
+                else if (cell == "") {
                     std::cout << empty_key;
                 }
             }
