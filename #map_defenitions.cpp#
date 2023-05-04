@@ -111,6 +111,9 @@ std::string map_defenitions(std::string map[100][114]) {
     map[34][23] = wall_key;
     map[33][22] = wall_key;
     map[33][23] = wall_key;
+    for (int i = 26; i <= 30; i++) {
+      for (int
+    }
 
     //mountain north of regalia
     for (int i = 38; i <= 42; i++) {
