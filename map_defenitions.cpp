@@ -19,7 +19,12 @@ std::string map_defenitions(std::string map[100][114]) {
     std::string teleport_key = " ⌂ ";
 
 
-    //regalia
+    //top border
+    for (int i = 0; i <= 120; i++) {
+      map[i][14] = wall_key;
+    }
+    
+    //regalia DONE
     map[31][101] = wall_key;
     map[32][101] = wall_key;
     map[33][101] = wall_key;
@@ -64,7 +69,7 @@ std::string map_defenitions(std::string map[100][114]) {
     map[29][102] = wall_key;
     map[30][102] = wall_key;
 
-    //river up to and around the fount
+    //river up to and around the fount DONE
     map[49][30] = water_key;
     map[50][30] = water_key;
     for (int i = 29; i >= 22; i--) {
@@ -84,7 +89,7 @@ std::string map_defenitions(std::string map[100][114]) {
     map[48][20] = water_key;
     map[49][21] = water_key;
 
-    //river to the west of Regalia
+    //river to the west of Regalia DONE
     map[39][31] = water_key;
     map[38][30] = water_key;
     map[37][29] = water_key;
@@ -98,7 +103,7 @@ std::string map_defenitions(std::string map[100][114]) {
     map[33][24] = water_key;
     map[32][23] = water_key;
 
-    //mountain west of regalia
+    //mountain west of regalia DONE
     map[36][25] = wall_key;
     map[36][26] = wall_key;
     map[35][27] = wall_key;
@@ -135,7 +140,7 @@ std::string map_defenitions(std::string map[100][114]) {
     map[23][25] = wall_key;
     map[23][26] = wall_key;
 
-    //mountain north of regalia
+    //mountain north of regalia DONE
     for (int i = 38; i <= 42; i++) {
         for (int j = 17; j <= 22; j++) {
             map[i][j] = wall_key;
@@ -163,12 +168,22 @@ std::string map_defenitions(std::string map[100][114]) {
     map[31][18] = wall_key;
     map[31][17] = wall_key;
 
-    //mountain east of the fount
+    //mountain east of the fount DONE
     for (int i = 58; i <= 61; i++) {
         for (int j = 18; j <= 25; j++) {
             map[i][j] = wall_key;
         }
     }
+    map[59][17] = wall_key;
+    map[60][17] = wall_key;
+    map[61][17] = wall_key;
+    for (int i = 62; i <= 63; i++) {
+      for (int j = 18; j <= 21; j++) {
+	map[i][j] = wall_key;
+      }
+    }
+    map[62][22] = wall_key;
+    map[61][26] = wall_key;
     
 
     //water in waterway
