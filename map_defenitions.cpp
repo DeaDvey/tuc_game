@@ -13,56 +13,56 @@
 #include <cctype>
 #include "header.h"
 
-std::string map_defenitions(std::string map[100][84]) {
+std::string map_defenitions(std::string map[100][114]) {
     std::string wall_key =     "|||";
     std::string water_key =    "≈≈≈";
     std::string teleport_key = " ⌂ ";
 
 
     //regalia
-    map[31][1] = wall_key;
-    map[32][1] = wall_key;
-    map[33][1] = wall_key;
-    map[34][1] = wall_key;
-    map[34][1] = wall_key;
-    map[35][1] = wall_key;
-    map[36][2] = wall_key;
-    map[37][2] = wall_key;
-    map[38][2] = wall_key;
-    map[39][2] = wall_key;
-    map[40][3] = wall_key;
-    map[41][4] = wall_key;
-    map[41][5] = wall_key;
-    map[42][6] = wall_key;
-    map[41][7] = wall_key;
-    map[41][8] = wall_key;
-    map[41][9] = wall_key;
-    map[41][10] = wall_key;
-    map[40][11] = wall_key;
-    map[39][12] = wall_key;
-    map[38][13] = wall_key;
-    map[37][13] = wall_key;
-    map[36][13] = wall_key;
-    map[35][13] = wall_key;
-    map[34][13] = wall_key;
+    map[31][101] = wall_key;
+    map[32][101] = wall_key;
+    map[33][101] = wall_key;
+    map[34][101] = wall_key;
+    map[34][101] = wall_key;
+    map[35][101] = wall_key;
+    map[36][102] = wall_key;
+    map[37][102] = wall_key;
+    map[38][102] = wall_key;
+    map[39][102] = wall_key;
+    map[40][103] = wall_key;
+    map[41][104] = wall_key;
+    map[41][105] = wall_key;
+    map[42][106] = wall_key;
+    map[41][107] = wall_key;
+    map[41][108] = wall_key;
+    map[41][109] = wall_key;
+    map[41][110] = wall_key;
+    map[40][111] = wall_key;
+    map[39][112] = wall_key;
+    map[38][113] = wall_key;
+    map[37][113] = wall_key;
+    map[36][113] = wall_key;
+    map[35][113] = wall_key;
+    map[34][113] = wall_key;
     //[33][13] is a teleport block
-    map[32][13] = wall_key;
-    map[31][13] = wall_key;
-    map[30][12] = wall_key;
-    map[29][12] = wall_key;
-    map[28][11] = wall_key;
-    map[27][10] = wall_key;
-    map[26][10] = wall_key;
-    map[25][9] = wall_key;
-    map[25][8] = wall_key;
-    map[25][7] = wall_key;
-    map[25][6] = wall_key;
-    map[25][5] = wall_key;
-    map[26][4] = wall_key;
-    map[27][3] = wall_key;
-    map[28][2] = wall_key;
-    map[29][2] = wall_key;
-    map[30][2] = wall_key;
+    map[32][113] = wall_key;
+    map[31][113] = wall_key;
+    map[30][112] = wall_key;
+    map[29][112] = wall_key;
+    map[28][111] = wall_key;
+    map[27][110] = wall_key;
+    map[26][110] = wall_key;
+    map[25][109] = wall_key;
+    map[25][108] = wall_key;
+    map[25][107] = wall_key;
+    map[25][106] = wall_key;
+    map[25][105] = wall_key;
+    map[26][104] = wall_key;
+    map[27][103] = wall_key;
+    map[28][102] = wall_key;
+    map[29][102] = wall_key;
+    map[30][102] = wall_key;
 
     //river up to and around the fount
     map[49][30] = water_key;
@@ -132,6 +132,11 @@ std::string map_defenitions(std::string map[100][84]) {
     map[35][20] = wall_key;
     map[36][20] = wall_key;
     map[37][20] = wall_key;
+    map[32][19] = wall_key;
+    map[32][18] = wall_key;
+    map[32][17] = wall_key;
+    map[31][18] = wall_key;
+    map[31][17] = wall_key;
 
     //mountain east of the fount
     for (int i = 58; i <= 61; i++) {
@@ -139,6 +144,7 @@ std::string map_defenitions(std::string map[100][84]) {
             map[i][j] = wall_key;
         }
     }
+    
 
     //water in waterway
     map[43][31] = water_key;
@@ -188,73 +194,73 @@ std::string map_defenitions(std::string map[100][84]) {
 
     //       ===building shapes===
     //regalia
-    map[34][12] = "|‾‾";
-    map[35][12] = "‾‾‾";
-    map[36][12] = "‾‾|";
-    map[38][12] = "|‾‾";
-    map[29][11] = "  |";
-    map[31][11] = "|__";
-    map[32][11] = "__|";
-    map[28][10] = "‾‾‾";
-    map[29][10] = "‾‾|";
-    map[31][10] = "|‾‾";
-    map[32][10] = "‾‾|";
-    map[34][10] = "|_‾";
-    map[35][10] = "___";
-    map[36][10] = "__|";
-    map[38][10] = "|__";
-    map[39][10] = "___";
-    map[26][9]  = "  |";
-    map[35][9]  ="|‾‾";
-    map[36][9]  = "‾‾|";
-    map[38][9]  = "|‾‾";
-    map[39][9]  = "‾‾‾";
-    map[40][9]  = "‾‾‾";
-    map[26][8]  = "  |";
-    map[28][8]  = "|__";
-    map[29][8]  = "__|";
-    map[31][8]  = "|__";
-    map[32][8]  = "___";
-    map[33][8]  = "__|";
-    map[26][7]  = "  |";
-    map[28][7]  = "|  ";
-    map[29][7]  = "  |";
-    map[37][7]  = "___";
-    map[38][7]  = "___";
-    map[39][7]  = "__|";
-    map[26][6]  = "  |";
-    map[28][6]  = "|‾‾";
-    map[29][6]  = "‾‾|";
-    map[31][6]  = "|‾‾";
-    map[32][6]  = "‾‾|";
-    map[36][6]  = "|‾‾";
-    map[37][6]  = "‾‾‾";
-    map[38][6]  = "‾‾‾";
-    map[39][6]  = "‾‾|";
-    map[26][5]  = "  |";
-    map[29][5]  = "╚==";
+    map[34][112] = "|‾‾";
+    map[35][112] = "‾‾‾";
+    map[36][112] = "‾‾|";
+    map[38][112] = "|‾‾";
+    map[29][111] = "  |";
+    map[31][111] = "|__";
+    map[32][111] = "__|";
+    map[28][110] = "‾‾‾";
+    map[29][110] = "‾‾|";
+    map[31][110] = "|‾‾";
+    map[32][110] = "‾‾|";
+    map[34][110] = "|_‾";
+    map[35][110] = "___";
+    map[36][110] = "__|";
+    map[38][110] = "|__";
+    map[39][110] = "___";
+    map[26][109]  = "  |";
+    map[35][109]  ="|‾‾";
+    map[36][109]  = "‾‾|";
+    map[38][109]  = "|‾‾";
+    map[39][109]  = "‾‾‾";
+    map[40][109]  = "‾‾‾";
+    map[26][108]  = "  |";
+    map[28][108]  = "|__";
+    map[29][108]  = "__|";
+    map[31][108]  = "|__";
+    map[32][108]  = "___";
+    map[33][108]  = "__|";
+    map[26][107]  = "  |";
+    map[28][107]  = "|  ";
+    map[29][107]  = "  |";
+    map[37][107]  = "___";
+    map[38][107]  = "___";
+    map[39][107]  = "__|";
+    map[26][106]  = "  |";
+    map[28][106]  = "|‾‾";
+    map[29][106]  = "‾‾|";
+    map[31][106]  = "|‾‾";
+    map[32][106]  = "‾‾|";
+    map[36][106]  = "|‾‾";
+    map[37][106]  = "‾‾‾";
+    map[38][106]  = "‾‾‾";
+    map[39][106]  = "‾‾|";
+    map[26][105]  = "  |";
+    map[29][105]  = "╚==";
     for (int i = 30; i <= 37; i++) {
-        map[i][5] = "===";
+        map[i][105] = "===";
     }
-    map[38][5] = "==╝";
-    map[29][4] = "|| ";
-    map[38][4] = " ||";
-    map[39][4] = "|__";
-    map[40][4] = "___";
-    map[29][3] = "|| ";
-    map[38][3] = " ||";
-    map[39][3] = "|  ";
+    map[38][105] = "==╝";
+    map[29][104] = "|| ";
+    map[38][104] = " ||";
+    map[39][104] = "|__";
+    map[40][104] = "___";
+    map[29][103] = "|| ";
+    map[38][103] = " ||";
+    map[39][103] = "|  ";
 
 
     //          ===labels===
     //regalia
-    map[30][7] = " R ";
-    map[31][7] = "|E ";
-    map[32][7] = "‾G‾";
-    map[33][7] = "‾A_";
-    map[34][7] = "|L ";
-    map[35][7] = "|I_";
-    map[36][7] = "_A_";
+    map[30][107] = " R ";
+    map[31][107] = "|E ";
+    map[32][107] = "‾G‾";
+    map[33][107] = "‾A_";
+    map[34][107] = "|L ";
+    map[35][107] = "|I_";
+    map[36][107] = "_A_";
 
     return "done";
 }

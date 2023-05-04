@@ -13,7 +13,7 @@
 #include <cctype>
 #include "header.h"
 
-std::string map_descriptions(std::string map_describe[100][84]) {
+std::string map_descriptions(std::string map_describe[100][114]) {
     //regalia
     map_describe[31][1] = "wall";
     map_describe[32][1] = "wall";
@@ -66,6 +66,6 @@ std::string map_descriptions(std::string map_describe[100][84]) {
 
     //teleports
     map_describe[33][13] = "46 29";
-    map_describe[46][28] = "33 12";
+    map_describe[46][28] = "33 112";
     return "done";
 }

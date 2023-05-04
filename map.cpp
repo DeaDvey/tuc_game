@@ -16,10 +16,10 @@
 
 std::string travel(const std::string& direction, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
     //defining map positions
-    std::string map[100][84];
+    std::string map[100][114];
     map_defenitions(map);// see map_defenitions.cpp for defining map blocks
 
-    std::string map_describe[100][84];
+    std::string map_describe[100][114];
     map_descriptions(map_describe);
 
     //variables
