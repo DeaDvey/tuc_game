@@ -111,6 +111,29 @@ std::string map_defenitions(std::string map[100][114]) {
     map[34][23] = wall_key;
     map[33][22] = wall_key;
     map[33][23] = wall_key;
+    for (int i = 26; i <= 30; i++) {
+      map[33][i] = wall_key;
+    }
+    map[32][22] = wall_key;
+    map[32][24] = wall_key;
+    for (int i = 26; i <= 31; i++) {
+      map[32][i] = wall_key;
+    }
+    map[30][22] = wall_key;
+    map[31][22] = wall_key;
+    for (int i = 25; i <= 31; i++) {
+      for (int j = 23; j <= 30; j++) {
+	map[i][j] = wall_key;
+      }
+    }
+    for (int i = 27; i <= 31; i++) {
+      map[i][31] = wall_key;
+    }
+    for (int i = 24; i <= 28; i++) {
+      map[24][i] = wall_key;
+    }
+    map[23][25] = wall_key;
+    map[23][26] = wall_key;
 
     //mountain north of regalia
     for (int i = 38; i <= 42; i++) {
