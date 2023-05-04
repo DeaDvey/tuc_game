@@ -17,11 +17,12 @@ std::string map_defenitions(std::string map[100][114]) {
     std::string wall_key =     "|||";
     std::string water_key =    "≈≈≈";
     std::string teleport_key = " ⌂ ";
+    std::string edge_key=      "---"; //used to single world border
 
 
     //top border
     for (int i = 0; i <= 120; i++) {
-      map[i][14] = wall_key;
+      map[i][14] = edge_key;
     }
     
     //regalia DONE
