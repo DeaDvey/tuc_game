@@ -66,11 +66,11 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
 
     data[key["location_y"]].second = std::to_string(location_y);
     data[key["location_x"]].second = std::to_string(location_x);
-    std::cout << "Moved " << direction << " to " << location_x << ", " <<location_y << "\n";
-    if (map_describe[location_y][location_x] != "") {
+    std::cout << "Moved " << direction << " to " << location_x << ", " << location_y << "\n";
+    if (map_describe[location_x][location_y] != "") {
         std::cout << "\n" << map[location_x][location_y] << "\n";
     }
-
+    
 
     return "traveled";
 }

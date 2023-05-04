@@ -38,7 +38,7 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
     std::string water_key =      "≈≈≈";
     std::string teleport_key =   "\\n/";
 
-    int fov = 5; // define field of view, or how far the player can see
+    int fov = 14; // define field of view, or how far the player can see
 
     //chat gpt wrote this lmao, it loops over each chunk in the surrounding zone based on fov and prints an ascii image based on what's there
     for (int j = -fov; j <= fov; j++) {
