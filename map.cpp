@@ -45,7 +45,7 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
         location_x--;
     }
     //if it's a wall/water/lava/other
-    if (map[location_x][location_y] == "|||" || map[location_x][location_y] == "≈≈≈" || map[location_x][location_y] == "???") {
+    if (map[location_x][location_y] == "|||" || map[location_x][location_y] == "≈≈≈" || map[location_x][location_y] == "???" || map_describe[location_x][location_y] == "wall" || map_describe[location_x][location_y] == "water" || map_describe[location_x][location_y] == "lava") {
         std::cout << "You hit: " << map_describe[location_x][location_y] << "\n"; //tell user they hit something impassible
         return "cannot go there";
     }
