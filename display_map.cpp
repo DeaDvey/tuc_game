@@ -20,7 +20,6 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
 
     std::string map_describe[100][114];
     map_descriptions(map_describe);
-
     //variables
     std::map<std::string, int> key; //map that stores the above vector
     for (int i = 0; i < data.size(); ++i) {
@@ -45,7 +44,6 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
       std::cout << "==="; 
     }
     std::cout << "╗";
-
         //chat gpt wrote this lmao, it loops over each chunk in the surrounding zone based on fov and prints an ascii image based on what's there
     for (int j = -fov; j <= fov; j++) {
       if (j != -fov) {

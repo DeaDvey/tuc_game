@@ -35,16 +35,18 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
     //std::cout << "-See commands.html for commands-" << "\n\n"; //commented out as it is diaplayed when typing "help"
     while (continue_loop == "true") {//infinite loop until exit is typed
         std::cout << ">> ";
+	
         std::cin >> input;
         //if input is exit, save and end the program
         if (lower(input) == "exit") {
             continue_loop = "false";
+	    std::cout << "test 8";
             saveToFile(saveFileName, data); //save data
             std::cout << "\nExiting\n";
             return "done";
         }
         //else, read the input
-        else {
+        else {;
             readInput(input, data, saveFileName);
         }
     }

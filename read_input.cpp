@@ -101,9 +101,14 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << "You must be standing in order to travel 🤦" << "\n";
         std::cout << command_info_color << "stand" << general_color << " to stand" << "\n";
     }
-
+    
     else if (input == "map") {
-        display_map(data, "saveFileName");
+      std::cout << "test 7";
+        display_map(data, saveFileName);
+    }
+
+    else if (input == "hello") {
+      std::cout << "hey dude!" << "\n";
     }
 
 

@@ -21,7 +21,7 @@ std::string map_defenitions(std::string map[100][114]) {
 
 
     //top border
-    for (int i = 0; i <= 120; i++) {
+    for (int i = 0; i <= 99; i++) {
       map[i][14] = edge_key;
     }
     
@@ -69,6 +69,7 @@ std::string map_defenitions(std::string map[100][114]) {
     map[28][102] = wall_key;
     map[29][102] = wall_key;
     map[30][102] = wall_key;
+
 
     //river up to and around the fount DONE
     map[49][30] = water_key;
@@ -185,6 +186,37 @@ std::string map_defenitions(std::string map[100][114]) {
     }
     map[62][22] = wall_key;
     map[61][26] = wall_key;
+
+    //mountain north west of regalia
+    for (int i = 12; i <= 25; i++) {
+      for (int j = 16; j <= 20; j++) {
+	map[i][j] = wall_key;
+      }
+    }
+    for (int i = 17; i <= 23; i++) {
+      map[i][15] = wall_key;
+    }
+    for (int i = 26; i <= 28; i++) {
+      for (int j = 16; j <= 17; i++) {
+	map[i][j] = wall_key;
+      }
+    }
+    map[26][18] = wall_key;
+    for (int i = 20; i <= 24; i++) {
+      map[i][21] = wall_key;
+    }
+    for (int i = 11; i <= 17; i++) {
+      for (int j = 17; j <= 22; i++) {
+	map[i][j] = wall_key;
+      }
+    }
+    map[17][21] = wall_key;
+    for (int i = 12; i <= 15; i++) {
+      map[i][23] = wall_key;
+    }
+    map[10][18] = wall_key;
+    map[10][19] = wall_key;
+    map[10][20] = wall_key;
     
 
     //water in waterway
@@ -302,6 +334,7 @@ std::string map_defenitions(std::string map[100][114]) {
     map[34][107] = "|L ";
     map[35][107] = "|I_";
     map[36][107] = "_A_";
+
 
     return "done";
 }
