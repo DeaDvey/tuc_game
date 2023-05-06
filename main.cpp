@@ -19,7 +19,8 @@
 #include <sstream>
 #include <cctype>
 #include "header.h"
-
+#include <chrono>
+#include <thread>
 
 
 int main() {
@@ -88,8 +89,10 @@ int main() {
 	std::cout << "---Welcome to your TUC adventure!---" << "\n\n"; //welcome speach said on all loads
 
 
+        // Create a new thread to run the loop
+	std::thread loop_thread(run_loop);
 
-
+	
 	
 	//                          ===character setup state===
 	if (data[key["state"]].second == "setup") {

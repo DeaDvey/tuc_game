@@ -111,6 +111,11 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
       //std::cout << message << "\n";
       talk(message, data);
     }
+    else if (input.substr(0, 3) == "say") { // find if the first 3 chracters are say
+      std::string message = input.substr(4);//get the actual message
+      //std::cout << message << "\n";
+      talk(message, data);
+    }
 
 
 

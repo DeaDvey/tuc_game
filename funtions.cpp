@@ -12,6 +12,18 @@
 #include <sstream>
 #include <cctype>
 #include "header.h"
+#include <chrono>
+#include <thread>
+
+void run_loop() {
+    while (true) {
+        // Call your function
+        recieve_chat();
+
+        // Sleep for 5 seconds
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+}
 
 void saveToFile(const std::string& fileName, const std::vector<std::pair<std::string, std::string>>& data) {
     std::ofstream outFile(fileName);
