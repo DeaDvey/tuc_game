@@ -14,10 +14,11 @@
 #include "header.h"
 
 std::string map_defenitions(std::string map[100][114]) {
-    std::string wall_key =     "|||";
-    std::string water_key =    "≈≈≈";
-    std::string teleport_key = " ⌂ ";
-    std::string edge_key=      "---"; //used to single world border
+    std::string wall_key =      "i!i";
+    std::string water_key =     "≈≈≈";
+    std::string teleport_key =  " ⌂ ";
+    std::string edge_key =      "---"; //used to single world border
+    std::string rock_key =      "^^^";
 
 
     //top border
