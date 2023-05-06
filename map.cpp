@@ -52,7 +52,7 @@ std::string travel(const std::string& direction, std::vector<std::pair<std::stri
 
     //if it's a teleport block
     else if (map[location_x][location_y] == " ⌂ ") {
-        std::cout << "on teleport" << "\n";
+        
         std::istringstream iss(map_describe[location_x][location_y]);
         if (!(iss >> location_x >> location_y)) {
             std::cerr << "Error: could not extract integers from string" << std::endl;
