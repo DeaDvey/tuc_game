@@ -31,6 +31,7 @@ with open('last-message.txt', 'r') as reader:
 
     elif reader.read() != last_message.text:
         with open('last-message.txt', 'w') as writer:
+            print(last_message.text)
             writer.write(last_message.text)
 
 print("got here and that")

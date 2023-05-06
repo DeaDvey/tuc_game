@@ -36,7 +36,7 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
     while (continue_loop == "true") {//infinite loop until exit is typed
         std::cout << ">> ";
 	
-        std::cin >> input;
+        getline(std::cin, input);
         //if input is exit, save and end the program
         if (lower(input) == "exit") {
             continue_loop = "false";
@@ -47,6 +47,8 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
         //else, read the input
         else {;
             readInput(input, data, saveFileName);
+	    std::string command = "bash exec ./talking/start-text-finder.sh";
+	    int exit_code = system(command.c_str());
         }
     }
     return "done";
