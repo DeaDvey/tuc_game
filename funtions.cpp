@@ -21,7 +21,7 @@ void run_loop() {
         recieve_chat();
 
         // Sleep for 5 seconds
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
 

@@ -47,7 +47,7 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
         //else, read the input
         else {;
             readInput(input, data, saveFileName);
-	    recieve_chat();
+	    //recieve_chat();
         }
     }
     return "done";

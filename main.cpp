@@ -89,8 +89,7 @@ int main() {
 	std::cout << "---Welcome to your TUC adventure!---" << "\n\n"; //welcome speach said on all loads
 
 
-        // Create a new thread to run the loop
-	std::thread loop_thread(run_loop);
+        
 
 	
 	
@@ -124,6 +123,9 @@ int main() {
 
 		saveToFile(saveFileName, data); //save data
 	}
+
+	// Create a new thread to run the loop
+	std::thread loop_thread(run_loop);
 
 
 	//                          ===Tutorial state===

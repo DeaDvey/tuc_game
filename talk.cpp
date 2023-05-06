@@ -46,7 +46,7 @@ std::string talk(std::string& input, std::vector<std::pair<std::string, std::str
 }
 
 std::string recieve_chat() {
-   std::string command = "bash ./talking/start-text-finder.sh";
+   std::string command = "bash ./talking/text-finder.sh";
    int exit_code = system(command.c_str());
    
    return "done";
