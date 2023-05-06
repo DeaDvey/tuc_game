@@ -20,6 +20,6 @@ std::string map_defenitions(std::string map[100][114]);
 std::string map_descriptions(std::string map[100][114]);
 std::string talk(std::string& input, std::vector<std::pair<std::string, std::string>>& data);
 std::string recieve_chat();
-void run_loop();
+void run_loop(); 
 
 #endif // MY_FUNCTIONS_H
