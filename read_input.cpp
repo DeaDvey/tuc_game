@@ -103,12 +103,7 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
     }
     
     else if (input == "map") {
-      std::cout << "test 7";
         display_map(data, saveFileName);
-    }
-
-    else if (input == "hello") {
-      std::cout << "hey dude!" << "\n";
     }
 
 

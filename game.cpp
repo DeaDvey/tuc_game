@@ -40,7 +40,6 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
         //if input is exit, save and end the program
         if (lower(input) == "exit") {
             continue_loop = "false";
-	    std::cout << "test 8";
             saveToFile(saveFileName, data); //save data
             std::cout << "\nExiting\n";
             return "done";

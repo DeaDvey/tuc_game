@@ -43,12 +43,10 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
     for (int i = 0; i <= fov * 2; i++) { //print top edge around map
       std::cout << "==="; 
     }
-    std::cout << "╗";
+    std::cout << "╗" << "\n";
         //chat gpt wrote this lmao, it loops over each chunk in the surrounding zone based on fov and prints an ascii image based on what's there
     for (int j = -fov; j <= fov; j++) {
-      if (j != -fov) {
 	std::cout << "║";
-      }
         for (int i = -fov; i <= fov; i++) {
             if (i == 0 && j == 0) { // player spot
                 std::cout << player_key;
@@ -62,8 +60,8 @@ std::string display_map(std::vector<std::pair<std::string, std::string>>& data, 
                 }
             }
         }
-	std::cout << "║";
-        std::cout << "\n"; // move to next row
+	std::cout << "║" << "\n";
+        //std::cout << "\n"; // move to next row
     }
 
     std::cout << "╚";

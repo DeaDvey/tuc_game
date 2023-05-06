@@ -197,7 +197,7 @@ std::string map_defenitions(std::string map[100][114]) {
       map[i][15] = wall_key;
     }
     for (int i = 26; i <= 28; i++) {
-      for (int j = 16; j <= 17; i++) {
+      for (int j = 16; j <= 17; j++) {
 	map[i][j] = wall_key;
       }
     }
@@ -206,7 +206,7 @@ std::string map_defenitions(std::string map[100][114]) {
       map[i][21] = wall_key;
     }
     for (int i = 11; i <= 17; i++) {
-      for (int j = 17; j <= 22; i++) {
+      for (int j = 17; j <= 22; j++) {
 	map[i][j] = wall_key;
       }
     }
