@@ -5,7 +5,7 @@ Please don't hesitate to tell me of any bugs or feature suggestion;
 it's a small program right now so I should be able to respond
 
 # TODO
-•Make skills.
+Make skills.<br/>
 •Design story.
 •Beautify.
 •Spread code across multiple files
