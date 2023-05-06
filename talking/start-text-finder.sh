@@ -1,2 +1,2 @@
 #!/bin/bash
-python3 text-finder.py
+python3 ./talking/text-finder.py &

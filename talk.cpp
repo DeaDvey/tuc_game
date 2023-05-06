@@ -13,8 +13,12 @@
 #include <cctype>
 #include "header.h"
 
-std::string talk(std::string& input) {//function to send a message to the message server
-  std::string final_input;//final input where spaces are replaced by %20
+std::string talk(std::string& input, std::vector<std::pair<std::string, std::string>>& data) {//function to send a message to the message server
+  std::map<std::string, int> key; //map that stores the above vector
+    for (int i = 0; i < data.size(); ++i) {
+        key[data[i].first] = i;
+    }
+  std::string final_input = data[key["name"]].second + ":%20";//final input where spaces are replaced by %20
   
   for (int i = 0; i < input.length(); i++) { // loop that replaces spaces with %20
     if (input[i] == ' ') {
@@ -39,4 +43,11 @@ std::string talk(std::string& input) {//function to send a message to the messag
   
   
   return "done";
+}
+
+std::string recieve_chat() {
+   std::string command = "bash ./talking/start-text-finder.sh";
+   int exit_code = system(command.c_str());
+   
+   return "done";
 }

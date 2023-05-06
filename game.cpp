@@ -47,8 +47,7 @@ std::string game(std::vector<std::pair<std::string, std::string>>& data, const s
         //else, read the input
         else {;
             readInput(input, data, saveFileName);
-	    std::string command = "bash exec ./talking/start-text-finder.sh";
-	    int exit_code = system(command.c_str());
+	    recieve_chat();
         }
     }
     return "done";

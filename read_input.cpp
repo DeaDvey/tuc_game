@@ -109,7 +109,7 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
     else if (input.substr(0, 4) == "talk") { // find if the first 4 chracters are talk
       std::string message = input.substr(5);//get the actual message
       //std::cout << message << "\n";
-      talk(message);
+      talk(message, data);
     }
 
 
