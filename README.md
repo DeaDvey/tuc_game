@@ -12,5 +12,3 @@ it's a small program right now so I should be able to respond
 
 # Dependencies
 •gcc - C++ compiler<br/>
-•python3 - python language<br/>
-•google-chrome (version 111) - web browser used for data scraping<br/>
