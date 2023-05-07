@@ -34,11 +34,11 @@ std::string talk(std::string& input, std::vector<std::pair<std::string, std::str
   
   int exit_code = system(command.c_str());
 
-  //if (exit_code == 0) {
-  //  std::cout << "Script executed successfully!" << "\n";
-  //}
+  if (exit_code == 0) {
+    //success
+  }
   if (exit_code == 1) {
-    std::cout << "Script failed to execute." << "\n";
+    std::cout << "Failed to send message; Maybe server is down? Contact me: deadvey@deadvey.xyz for assistance" << "\n";
   }
   
   
