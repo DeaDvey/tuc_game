@@ -48,6 +48,14 @@ std::string talk(std::string& input, std::vector<std::pair<std::string, std::str
 std::string recieve_chat() {
    std::string command = "bash ./talking/text-finder.sh";
    int exit_code = system(command.c_str());
+
+   if (exit_code == 1) {
+     std::cout << "failed to find recent messages" << "\n";
+     std::cout << "This could be due to the server being down, please contact me at deadvey@deadvey.xyz and I will start the server" << "\n";
+   }
+   else if (exit_code == 0) {
+     //nothing happens as it's a success
+   }
    
    return "done";
 }
