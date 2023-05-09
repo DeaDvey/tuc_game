@@ -121,15 +121,7 @@ int main() {
             data[key["state"]].second = "tutorial";
 
 		}
-		if (data[key["species"]].second == "Overlander") {
-		  data[key["inventory"]].second += "torch ";
-		}
-		if (data[key["species"]].second == "Underlander") {
-		  data[key["inventory"]].second += "sword ";
-		}
-		if (data[key["species"]].second == "Gnawer") {
-		  data[key["inventory"]].second += "";
-		}
+		
 
 
 		saveToFile(saveFileName, data); //save data
@@ -157,10 +149,10 @@ int main() {
 
 	//else check, if state is invalid
 	else if (data[key["state"]].second != "setup" && data[key["state"]].second != "tutorial" && data[key["state"]].second != "main") { //lets up know if state has a corrupted value
-            std::cout << "\033[31m";
+            std::cout << fatal_error_color;
 
-			std::cout << "state is messed up bruh" << "\n";
-            std::cout << "\033[0m";
+	    std::cout << "state is messed up bruh" << "\n";
+            std::cout << general_color;
 			return 1;
 	}
 
