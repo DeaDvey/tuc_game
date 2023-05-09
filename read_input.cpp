@@ -1,3 +1,4 @@
+//include statements
 #include <iostream>
 #include <iostream>
 #include <fstream> // for file input/output
@@ -15,7 +16,7 @@
 
 
 //                        ===read user input and determine the output===
-std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
+std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) { // this function esentially recieves an input and determines where to send the user, a middle man
     //variables
     std::cout << "\n"; //seperate up input and output
 
@@ -33,7 +34,7 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
     std::string dialouge_color = "\033[3;32m";
     std::string command_info_color = "\033[34m";
     std::string general_color = "\033[0m";
-
+    //variables ^^
 
 
 
@@ -60,13 +61,13 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << "Game saved" << "\n";
     }
 
-    //credits
+    //credits for game designers/helpers/contrbuters
     else if (input == "credit" || input == "credits") {
         std::cout << "• DeaDvey - contributer and project leader" << "\n";
         std::cout << "• Presley - designed original map used to create pixel map" << "\n";
     }
 
-    //print info/specific info
+    //print info/specific info for the character
     else if (input == "info" || input == "information") {
         //print all the variables
         std::cout << "Species: " << data[key["species"]].second << "\n";
@@ -76,15 +77,16 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << "State: " << data[key["state"]].second << "\n";
         std::cout << "Location: " << data[key["location_x"]].second << ", " << data[key["location_y"]].second << "\n";
         std::cout << "Physical position: " << data[key["physical_position"]].second << "\n";
+	std::cout << "inventory: " << data[key["inventory"]].second << "\n";
     }
 
-    //help the user
+    //help the user by giving them commands info
     else if (input == "help") {
         std::cout << "See resources/tucgame.html for commands" << "\n";
         std::cout << "It looks best in a web browser display" << "\n";
     }
 
-    //traveling
+    //traveling around map, north, south, east and west
     else if ((input == "n" || input == "north") && data[key["physical_position"]].second == "standing") {
         travel("north", data, saveFileName);
     }
@@ -101,11 +103,13 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
         std::cout << "You must be standing in order to travel 🤦" << "\n";
         std::cout << command_info_color << "stand" << general_color << " to stand" << "\n";
     }
-    
+
+    //print map on screen
     else if (input == "map") {
         display_map(data, saveFileName);
     }
 
+    //talk to the global chat
     else if (input.substr(0, 4) == "talk") { // find if the first 4 chracters are talk
       std::string message = input.substr(5);//get the actual message
       //std::cout << message << "\n";
@@ -117,7 +121,7 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
       talk(message, data);
     }
 
-    //inventory stuff
+    //display inventory
     else if (input == "inventory" || input == "inv") {
       return_inventory_array(data, saveFileName);
     }
