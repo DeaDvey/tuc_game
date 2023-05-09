@@ -45,7 +45,8 @@ int main() {
         {"location_x", "0"},
         {"location_y", "0"},
         {"physical_position", "standing"},
-	{"inventory", ""} 
+	{"inventory", ""},
+	{"dev_mode", "no"}
     };
 
 	std::map<std::string, int> key; //map that stores the above vector
