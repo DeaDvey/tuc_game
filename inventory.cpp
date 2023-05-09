@@ -15,6 +15,7 @@
 #include <iterator>
 #include "header.h"
 
+//return an array for the inventory when a string is inputed
 std::string return_inventory_array(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
   
   std::map<std::string, int> key; //map that stores the above vector
@@ -35,6 +36,20 @@ std::string return_inventory_array(std::vector<std::pair<std::string, std::strin
   for (int j = 0; j < i; j++) {
     std::cout << inventory_array[j] << "\n";
   }
+  return "done";
+}
+
+//add an item to the inventory array
+std::string add_to_inventory_array(std::vector<std::pair<std::string, std::string>>& data, std::string& item) {
+  std::map<std::string, int> key; //map that stores the above vector
+  for (int i = 0; i < data.size(); ++i) {
+      key[data[i].first] = i;
+  }
+  
+  std::string inventory = data[key["inventory"]].second;
+  int lenght_of_inv = inventory.length();
+  int length_of_item = item.length();
+
   return "done";
 }
 

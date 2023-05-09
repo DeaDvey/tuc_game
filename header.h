@@ -22,5 +22,5 @@ std::string talk(std::string& input, std::vector<std::pair<std::string, std::str
 std::string recieve_chat();
 void run_loop();
 std::string return_inventory_array(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
-
+std::string add_to_inventory_array(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName);
 #endif // MY_FUNCTIONS_H
