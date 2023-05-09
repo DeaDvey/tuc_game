@@ -5,6 +5,7 @@
 //Green+italics =    Dialouge
 //White =            Rest/narator
 
+//include statements
 #include <iostream>
 #include <iostream>
 #include <fstream> // for file input/output
@@ -22,9 +23,9 @@
 #include <chrono>
 #include <thread>
 
-
+//main function begins
 int main() {
-    //clear screen on program start
+    //clear screen on program start for more imersion
 	#ifdef _WIN32
         std::system("cls");
     #else
@@ -52,7 +53,7 @@ int main() {
         key[data[i].first] = i;
     }
 
-    //color codes
+    //color codes used during text
     std::string fatal_error_color = "\033[31m";
     std::string error_color = "\033[33m";
     std::string dialouge_color = "\033[3;32m";
