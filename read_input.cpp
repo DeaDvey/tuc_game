@@ -16,7 +16,7 @@
 
 
 //                        ===read user input and determine the output===
-std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) { // this function esentially recieves an input and determines where to send the user, a middle man
+std::string readInput(std::string& input, std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) { // this function esentially recieves an input and determines where to send the user, a middle man 
     //variables
     std::cout << "\n"; //seperate up input and output
 
