@@ -10,32 +10,32 @@
 #include <unordered_map>
 #include <vector>
 #include <sstream>
-#include <sstype>
 #include <array>
 #include <sstream>
+#include <iterator>
 #include "header.h"
 
-std::string check_inventory(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
-
-
-  return "done";
-}
-
-std::string add_to_inventory(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
-
-  //data key for accessing elements
+std::string return_inventory_array(std::vector<std::pair<std::string, std::string>>& data, const std::string& saveFileName) {
+  
   std::map<std::string, int> key; //map that stores the above vector
   for (int i = 0; i < data.size(); ++i) {
       key[data[i].first] = i;
   }
 
-  std::istringstream iss(input);
-  std::vector<std::string> words{std::istream_iterator<std::string>{iss},
-                                    std::istream_iterator<std::string>{}};
-    for (const auto& word : words) {
-        std::cout << word << '\n';
-    }
-    
-  
+  int space_in_inventory = 32;
+  std::string inventory = data[key["inventory"]].second;
+  std::stringstream ss(inventory);
+  std::string word;
+  std::string inventory_array[space_in_inventory]; //array that will store the inventory
+  int i = 0;
+  while (ss >> word && i < space_in_inventory) {
+    inventory_array[i] = word;
+    i++;
+  }
+  for (int j = 0; j < i; j++) {
+    std::cout << inventory_array[j] << "\n";
+  }
   return "done";
 }
+
+

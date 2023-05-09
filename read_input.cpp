@@ -117,6 +117,11 @@ std::string readInput(std::string& input, std::vector<std::pair<std::string, std
       talk(message, data);
     }
 
+    //inventory stuff
+    else if (input == "inventory" || input == "inv") {
+      return_inventory_array(data, saveFileName);
+    }
+
 
 
     //else tell user they must of typoed

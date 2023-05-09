@@ -120,6 +120,15 @@ int main() {
             data[key["state"]].second = "tutorial";
 
 		}
+		if (data[key["species"]].second == "Overlander") {
+		  data[key["inventory"]].second += "torch ";
+		}
+		if (data[key["species"]].second == "Underlander") {
+		  data[key["inventory"]].second += "sword ";
+		}
+		if (data[key["species"]].second == "Gnawer") {
+		  data[key["inventory"]].second += "";
+		}
 
 
 		saveToFile(saveFileName, data); //save data
