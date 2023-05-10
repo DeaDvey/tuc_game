@@ -15,6 +15,7 @@
 #include <chrono>
 #include <thread>
 
+//this continuously calls a script to find the most recent message from the global chat server
 void run_loop() {
     while (true) {
         // Call your function
@@ -25,6 +26,7 @@ void run_loop() {
     }
 }
 
+//this saves all of the data in the data vector into a text file (save.txt) so it can be retrieved by load()
 void saveToFile(const std::string& fileName, const std::vector<std::pair<std::string, std::string>>& data) {
     std::ofstream outFile(fileName);
     if (outFile.is_open()) {
@@ -38,7 +40,9 @@ void saveToFile(const std::string& fileName, const std::vector<std::pair<std::st
     }
 }
 
+
 //                        ===load variables in data from save file===
+//this loads variables into the data variables from the save.txt file, related to the save funtion
 void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string, std::string>>& data) {
     std::ifstream inFile(fileName);
     if (inFile.is_open()) {
@@ -60,7 +64,7 @@ void loadFromFile(const std::string& fileName, std::vector<std::pair<std::string
 }
 
 //          convert strings to lower or uppercase
-//toupper function
+//toupper function, turns string into all uppercase
 std::string upper(std::string& text) {
     //std::string uppertext;
     for (auto& c : text) {
@@ -69,7 +73,7 @@ std::string upper(std::string& text) {
 
     return text;
 }
-//tolower function
+//tolower function, turns text into all lowercase
 std::string lower(std::string& text) {
     //std::string uppertext;
     for (auto& c : text) {
